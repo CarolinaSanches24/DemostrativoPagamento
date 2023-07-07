@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Condicional Aninhada</title>
+    </head>
+   <body bgcolor="black">
+       
+    <form name="Formulario" action="" method="post"/>
+    <legend>DEMOSTRATIVO DE PAGAMENTO</legend><br>
+    <label>Quantidade de horas trabalhadas :</label><input type="text" name="Qtd"><br>
+    <label>Valor hora trabalhada R$:</label> <input type="text" name="hora"><br>
+    <label>Desconto INSS (%):</label> <input type="text" name="desc">
+    <input type="button" value="VERIFICAR" name="btn" class="btn" onclick="Verificar()"></input>
+
+    </form>
+
+    <style>
+        form{
+            margin-top: 5%;
+            margin-left:30%;
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(46,7,222,1) 100%);
+            width:35%;
+            height: 100%;
+            padding: 10px;
+        }
+        input{
+            margin-top: 10px;
+            display:inline;
+            font-size: 15px;
+            padding: 10px;
+            margin-left: 20px;
+            width: 10%;
+        }
+            
+        label{
+            font-size:25px;
+            padding:5px;
+            
+        
+        }
+        legend{
+            text-align:center;
+            font-size:25px;
+            font-weight: bold;
+        }
+        .btn{
+            margin-top: 50px;
+            height: 20%;
+            width:50%;
+            margin-left:25%;
+            background-color: white;
+            border:solid 2px black;
+            color:black;
+            font-weight:bold;
+            border-radius: 5px;
+        }
+    </style>
+    
+    <script language="JavaScript">
+       
+        var js_Quantidade ;
+        var js_hora;
+        var js_desconto;
+
+        var salario_Bruto;
+        var salario_liquido;
+        var classificacao;
+    function Verificar(){
+
+       js_Quantidade=document.Formulario.Qtd.value;
+        js_hora=document.Formulario.hora.value;
+        js_desconto=document.Formulario.desc.value;
+
+        salario_Bruto=parseFloat(js_hora*js_Quantidade);
+        salario_liquido=parseFloat(salario_Bruto-(js_desconto*salario_Bruto/100));
+        
+
+        if(salario_liquido>1212){
+            classificacao="ACIMA DA MÉDIA";
+        }
+        if(salario_liquido<1212){
+            classificacao="ABAIXO DO SALÁRIO MÍNIMO";
+        }
+        if(salario_liquido>=10000){
+            classificacao="APTO A DECLARAR IMPOSTO DE RENDA";
+        }
+        window.alert('DEMOSTRATIVO DE PAGAMENTO\n'+
+            'Quantidade Horas Trabalhadas: '+ js_Quantidade+'hrs'+
+            '\nValor por Hora R$'+js_hora+
+            '\nPercentual desconto INSS '+js_desconto +'%'+
+            '\n-------------------------------------------------'+
+            //.toLocaleString('pt-BR') formatar o número separando os milhares
+            '\nSalario Bruto R$'+salario_Bruto.toLocaleString('pt-BR')+
+            '\nSalario Líquido R$'+salario_liquido.toLocaleString('pt-BR')+
+            '\nTotal de Descontos INSS R$:'+parseFloat(js_desconto*salario_Bruto/100)+
+            '\n-------------------------------------------------'+
+            '\nCLASSIFICAÇÃO: '+classificacao);
+        
+       
+
+        }
+        
+    </script>
+    </body>
+</html>
